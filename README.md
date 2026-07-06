@@ -10,6 +10,8 @@
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
 ---
+## My Github - https://github.com/Vijay3129
+
 
 # 🌍 Project Overview
 
@@ -408,4 +410,6 @@ Artificial Intelligence & Machine Learning Enthusiast
 
 ---
 
-**Thank you for consulting this project**
+# **Thank you for consulting this project**
+
+**I hope this can be helpful for your Research**

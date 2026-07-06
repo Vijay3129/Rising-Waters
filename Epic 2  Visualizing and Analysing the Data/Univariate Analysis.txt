@@ -1,0 +1,28 @@
+# ==========================================
+# Univariate Analysis - Distribution Plot
+# ==========================================
+
+# Distribution plot for Temperature
+sns.distplot(dataset['Temp'])
+
+# Display the plot
+plt.title('Distribution Plot of Temperature')
+plt.xlabel('Temperature')
+plt.ylabel('Density')
+plt.show()
+
+# ==========================================
+# Univariate Analysis - Box Plot
+# ==========================================
+
+# Box plot for Temperature
+
+plt.figure(figsize=(6,4))
+
+sns.boxplot(x=dataset['Temp'])
+
+plt.title('Box Plot of Temperature')
+
+plt.xlabel('Temperature')
+
+plt.show()

@@ -1,0 +1,24 @@
+# ==========================================
+# Loading and Exploring the Dataset
+# ==========================================
+
+# Read the dataset
+dataset = pd.read_excel('flood dataset.xlsx')
+
+# Display the first 5 records
+print(dataset.head())
+
+# Display the shape of the dataset
+print("Dataset Shape:", dataset.shape)
+
+# Display dataset information
+print("\nDataset Information:")
+print(dataset.info())
+
+# Display statistical summary
+print("\nStatistical Summary:")
+print(dataset.describe())
+
+# Check for missing values
+print("\nMissing Values:")
+print(dataset.isnull().sum())

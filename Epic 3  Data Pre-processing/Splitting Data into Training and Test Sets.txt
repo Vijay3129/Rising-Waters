@@ -1,0 +1,21 @@
+# ==========================================
+# Data Pre-processing
+# Splitting Data into Training and Test Sets and Creating Independent Variables (X) and Target Variable (y)
+# ==========================================
+
+# Select all input features except the target column
+X = dataset.drop('flood', axis=1)
+
+# Select the target variable
+y = dataset['flood']
+
+# Display the dimensions of X and y
+print("Shape of X:", X.shape)
+print("Shape of y:", y.shape)
+
+# Display the first five records
+print("\nIndependent Variables (X):")
+print(X.head())
+
+print("\nTarget Variable (y):")
+print(y.head())

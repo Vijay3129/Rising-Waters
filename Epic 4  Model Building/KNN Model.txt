@@ -1,0 +1,36 @@
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
+
+
+def KNN(X_train, X_test, y_train, y_test):
+    print("\n========== KNN MODEL BUILDING ==========")
+
+    # Initialize KNN classifier
+    model = KNeighborsClassifier(n_neighbors=5)
+
+    # Train the model
+    model.fit(X_train, y_train)
+    print("[INFO] KNN model training completed.")
+
+    # Predict on test data
+    y_pred = model.predict(X_test)
+    print("[INFO] Prediction completed on test data.")
+
+    # Evaluate model performance
+    accuracy = accuracy_score(y_test, y_pred)
+    cm = confusion_matrix(y_test, y_pred)
+    cr = classification_report(y_test, y_pred)
+
+    # Display results
+    print("\n[RESULT] Accuracy:", accuracy)
+    print("\nConfusion Matrix::")
+    print(cm)
+    print("\nClassification Report:")
+    print(cr)
+
+    # Return model and predictions
+    return model, y_pred
+
+
+# Example Usage
+# knn_model, knn_pred = KNN(X_train, X_test, y_train, y_test)

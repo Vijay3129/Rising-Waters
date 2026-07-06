@@ -1,0 +1,38 @@
+# ==========================================
+# Importing Required Libraries
+# ==========================================
+
+# NumPy - Numerical computations and multidimensional arrays
+import numpy as np                  # For numerical computations
+
+# Pandas - Data manipulation and analysis
+import pandas as pd                 # For data analysis and preprocessing
+
+# Matplotlib - Basic data visualization
+import matplotlib.pyplot as plt     # For creating charts and plots
+
+# Seaborn - Advanced statistical visualizations
+import seaborn as sns               # For attractive statistical plots
+
+# Scikit-learn - Machine learning utilities
+from sklearn.model_selection import train_test_split    # Split dataset
+from sklearn.preprocessing import StandardScaler        # Feature scaling
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    classification_report
+)                                                    # Model evaluation
+
+# XGBoost - Gradient boosting algorithm
+from xgboost import XGBClassifier                     # Flood prediction model
+
+# Flask - Web application framework
+from flask import Flask, render_template, request    # Web application
+
+# Joblib - Save and load trained ML models
+import joblib                                        # Model serialization
+
+# Pickle - Alternative model saving/loading
+import pickle                                        # Object serialization
+
+print("All required libraries imported successfully!")

@@ -1,0 +1,29 @@
+# ==========================================
+# Multivariate Analysis - Correlation Heat Map
+# ==========================================
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set figure size
+plt.figure(figsize=(15, 15))
+
+# Generate the correlation heat map
+sns.heatmap(
+    dataset.corr(numeric_only=True),
+    annot=True,
+    cmap='summer',
+    linewidths=1,
+    linecolor='black',
+    square=True,
+    vmin=-1,
+    vmax=1,
+    cbar=True,
+    cbar_kws={"orientation": "vertical"}
+)
+
+# Add title
+plt.title("Correlation Heat Map", fontsize=18)
+
+# Display the plot
+plt.show()

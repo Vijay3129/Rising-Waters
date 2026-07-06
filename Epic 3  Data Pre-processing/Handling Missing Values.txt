@@ -1,0 +1,16 @@
+# ==========================================
+# Data Pre-processing
+# Handling Missing Values
+# ==========================================
+
+# Check for missing values in each column
+print("Missing Values in Each Column:")
+print(dataset.isnull().sum())
+
+# Check whether any column contains missing values
+print("\nDoes the dataset contain missing values?")
+print(dataset.isnull().any())
+
+# Check the total number of missing values in the dataset
+print("\nTotal Missing Values:")
+print(dataset.isnull().sum().sum())

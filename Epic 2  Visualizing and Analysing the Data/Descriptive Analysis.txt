@@ -1,0 +1,27 @@
+# ==========================================
+# Descriptive Analysis
+# ==========================================
+
+# Display the first 5 observations
+print("First 5 Records:")
+print(dataset.head())
+
+# Display dataset information
+print("\nDataset Information:")
+dataset.info()
+
+# Display statistical summary
+print("\nStatistical Summary:")
+print(dataset.describe())
+
+# Display the dimensions of the dataset
+print("\nDataset Shape:")
+print(dataset.shape)
+
+# Display data types of each column
+print("\nData Types:")
+print(dataset.dtypes)
+
+# Check for missing values
+print("\nMissing Values:")
+print(dataset.isnull().sum())

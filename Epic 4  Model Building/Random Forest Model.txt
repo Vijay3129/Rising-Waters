@@ -1,0 +1,46 @@
+# ==========================================
+# Epic 4: Model Building
+# Random Forest Classifier
+# ==========================================
+
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# Function for Random Forest Model
+def randomForest(X_train, X_test, y_train, y_test):
+
+    # Initialize the Random Forest Classifier
+    model = RandomForestClassifier(
+        n_estimators=100,
+        random_state=42
+    )
+
+    # Train the model
+    model.fit(X_train, y_train)
+
+    # Predict on test data
+    y_pred = model.predict(X_test)
+
+    # Calculate accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+
+    # Print Evaluation Results
+    print("========================================")
+    print("Random Forest Classification Results")
+    print("========================================")
+
+    print("\nAccuracy Score:")
+    print(round(accuracy * 100, 2), "%")
+
+    print("\nConfusion Matrix:")
+    print(confusion_matrix(y_test, y_pred))
+
+    print("\nClassification Report:")
+    print(classification_report(y_test, y_pred))
+
+    # Return trained model and predictions
+    return model, y_pred
+
+# Build and Evaluate the Model
+rf_model, rf_predictions = randomForest(X_train, X_test, y_train, y_test)

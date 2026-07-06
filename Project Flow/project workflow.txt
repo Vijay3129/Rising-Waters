@@ -1,0 +1,26 @@
+class RaisingWatersProject:
+    def __init__(self):
+        self.stages = [
+            "Data Collection",
+            "Water Level Analysis",
+            "Risk Assessment",
+            "Alert Generation",
+            "Reporting"
+        ]
+        self.current_stage = 0
+
+    def start_project(self):
+        print("Starting Raising Waters Project Workflow...\n")
+
+        while self.current_stage < len(self.stages):
+            print(f"Stage {self.current_stage + 1}: {self.stages[self.current_stage]}")
+            input("Press Enter to complete this stage...")
+            self.current_stage += 1
+
+        print("\nProject Workflow Completed Successfully!")
+
+
+# Main Program
+if __name__ == "__main__":
+    project = RaisingWatersProject()
+    project.start_project()

@@ -1,0 +1,84 @@
+# ==========================================================
+# IMPORT DEPENDENCIES
+# ==========================================================
+from flask import Flask, render_template, request, redirect
+from joblib import load
+import pandas as pd
+
+# ==========================================================
+# CREATE FLASK APP AND LOAD MODEL FILES
+# ==========================================================
+app = Flask(__name__)
+
+# Load saved model and scaler
+model = load('floods.save')
+sc = load('transform.save')
+
+# ==========================================================
+# PAGE ROUTING
+# ==========================================================
+
+# Landing Page
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+
+# Prediction Input Page
+@app.route('/Predict')
+def predict_page():
+    return render_template('index.html')
+
+
+# Flood Predicted Page
+@app.route('/chance')
+def chance():
+    return render_template('chance.html')
+
+
+# No Flood Predicted Page
+@app.route('/no_chance')
+def no_chance():
+    return render_template('no_chance.html')
+
+
+# ==========================================================
+# PREDICTION LOGIC
+# ==========================================================
+@app.route('/predict', methods=['POST'])
+def predict():
+
+    # Receive input values from HTML form
+    rainfall = float(request.form['rainfall'])
+    river_level = float(request.form['river_level'])
+    humidity = float(request.form['humidity'])
+    temperature = float(request.form['temperature'])
+    drainage = float(request.form['drainage'])
+
+    # Create DataFrame with independent features
+    data = pd.DataFrame({
+        'Rainfall': [rainfall],
+        'River_Level': [river_level],
+        'Humidity': [humidity],
+        'Temperature': [temperature],
+        'Drainage_System': [drainage]
+    })
+
+    # Apply saved scaler
+    data = sc.transform(data)
+
+    # Generate prediction
+    prediction = model.predict(data)
+
+    # Redirect according to prediction result
+    if prediction[0] == 1:
+        return redirect('/chance')
+    else:
+        return redirect('/no_chance')
+
+
+# ==========================================================
+# EXECUTION
+# ==========================================================
+if __name__ == '__main__':
+    app.run(debug=True)

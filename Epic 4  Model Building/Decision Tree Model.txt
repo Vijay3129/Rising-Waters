@@ -1,0 +1,44 @@
+# ==========================================
+# Epic 4: Model Building
+# Decision Tree Classifier
+# ==========================================
+
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+
+# Function for Decision Tree Model
+def decisiontree(X_train, X_test, y_train, y_test):
+
+    # Initialize the Decision Tree Classifier
+    model = DecisionTreeClassifier(random_state=42)
+
+    # Train the model
+    model.fit(X_train, y_train)
+
+    # Predict on test data
+    y_pred = model.predict(X_test)
+
+    # Calculate accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+
+    # Print results
+    print("========================================")
+    print("Decision Tree Classification Results")
+    print("========================================")
+
+    print("\nAccuracy Score:")
+    print(round(accuracy * 100, 2), "%")
+
+    print("\nConfusion Matrix:")
+    print(confusion_matrix(y_test, y_pred))
+
+    print("\nClassification Report:")
+    print(classification_report(y_test, y_pred))
+
+    # Return trained model
+    return model
+
+# Build and Evaluate the Model
+dt_model = decisiontree(X_train, X_test, y_train, y_test)

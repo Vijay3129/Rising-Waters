@@ -1,0 +1,65 @@
+# ==========================================================
+# FLOOD PREDICTION SYSTEM - SAVE, LOAD AND PREDICT
+# ==========================================================
+
+import joblib
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+
+# ==========================================================
+# STEP 1: SAVE THE TRAINED MODEL AND SCALER
+# ==========================================================
+# Assumptions:
+# xgb_model -> Trained XGBoost model
+# scaler    -> Fitted StandardScaler
+
+joblib.dump(xgb_model, "floods.save")
+joblib.dump(scaler, "transform.save")
+
+print("[INFO] XGBoost model saved as 'floods.save'.")
+print("[INFO] StandardScaler saved as 'transform.save'.")
+
+# ==========================================================
+# STEP 2: LOAD THE SAVED MODEL AND SCALER
+# ==========================================================
+
+model = joblib.load("floods.save")
+transform = joblib.load("transform.save")
+
+print("[INFO] Saved model loaded successfully.")
+print("[INFO] Saved scaler loaded successfully.")
+
+# ==========================================================
+# STEP 3: REAL-TIME PREDICTION
+# ==========================================================
+# Replace these values with actual user inputs.
+# Number of values must match your dataset features.
+
+user_input = np.array([[5, 8, 7, 3, 4, 6, 2, 9]])
+
+# Standardize the input
+scaled_input = transform.transform(user_input)
+
+# Generate prediction
+prediction = model.predict(scaled_input)
+
+# ==========================================================
+# STEP 4: DISPLAY RESULT
+# ==========================================================
+
+if prediction[0] == 1:
+    print("\n[RESULT] Flood Risk Detected.")
+else:
+    print("\n[RESULT] No Flood Risk Detected.")
+
+# ==========================================================
+# DEPLOYMENT WORKFLOW
+# ==========================================================
+print("\n========== FLOOD PREDICTION WORKFLOW ==========")
+print("STEP 1 : Load transform.save")
+print("STEP 2 : Receive user input")
+print("STEP 3 : Standardize input using StandardScaler")
+print("STEP 4 : Load floods.save")
+print("STEP 5 : Generate prediction using XGBoost")
+print("STEP 6 : Display final flood prediction")
+print("================================================")

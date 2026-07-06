@@ -1,0 +1,35 @@
+# ==========================================
+# Data Pre-processing
+# Handling Categorical Values
+# ==========================================
+
+from sklearn.preprocessing import LabelEncoder
+
+# Create LabelEncoder object
+label_encoder = LabelEncoder()
+
+# ------------------------------------------
+# Feature Mapping (For Ordered Categories)
+# ------------------------------------------
+
+# Example: Weather Condition
+weather_mapping = {
+    'Low': 0,
+    'Medium': 1,
+    'High': 2
+}
+
+# Apply mapping if the column exists
+if 'WeatherCondition' in dataset.columns:
+    dataset['WeatherCondition'] = dataset['WeatherCondition'].map(weather_mapping)
+
+# ------------------------------------------
+# Label Encoding (For Unordered Categories)
+# ------------------------------------------
+
+# Encode all object (categorical) columns
+for column in dataset.select_dtypes(include=['object']).columns:
+    dataset[column] = label_encoder.fit_transform(dataset[column])
+
+# Display the updated dataset
+print(dataset.head())

@@ -1,0 +1,55 @@
+# ==========================================================
+# PAGE ROUTING
+# ==========================================================
+
+@app.route('/')  # Rendering the home page
+def home():
+    return render_template('home.html')
+
+
+@app.route('/predict')  # Rendering the prediction form
+def index():
+    return render_template('index.html')
+
+
+# ==========================================================
+# PREDICTION FUNCTION
+# ==========================================================
+
+@app.route('/prediction', methods=['POST'])
+def predict():
+
+    # Get user inputs from the form
+    rainfall = float(request.form['rainfall'])
+    temperature = float(request.form['temperature'])
+    humidity = float(request.form['humidity'])
+    river_level = float(request.form['river_level'])
+    drainage = float(request.form['drainage'])
+
+    # Create DataFrame with the five independent features
+    data = pd.DataFrame({
+        'Rainfall': [rainfall],
+        'Temperature': [temperature],
+        'Humidity': [humidity],
+        'River_Level': [river_level],
+        'Drainage_System': [drainage]
+    })
+
+    # Apply the saved StandardScaler
+    data = sc.transform(data)
+
+    # Generate prediction using the saved XGBoost model
+    prediction = model.predict(data)
+
+    # Redirect user to the appropriate page
+    if prediction[0] == 1:
+        return render_template('chance.html')
+    else:
+        return render_template('no_chance.html')
+
+
+# ==========================================================
+# EXECUTION
+# ==========================================================
+if __name__ == '__main__':
+    app.run(debug=True)
